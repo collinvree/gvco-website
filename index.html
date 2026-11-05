@@ -140,7 +140,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     </div>
     <aside class="dates" aria-labelledby="dl">
       <h2 id="dl">Upcoming deadlines</h2>
-      <p class="s">Federal dates for the 2026 tax year. Check with us if you have an extension or a fiscal year.</p>
+      <p class="s">Federal dates for the 2026 tax year. Check with us if you have an extension.</p>
       <ol>
         <li><time datetime="2027-01-15">Jan 15</time><div><b>Q4 estimated tax payment</b><span>Individuals and self-employed</span></div></li>
         <li><time datetime="2027-01-31">Jan 31</time><div><b>W-2 and 1099-NEC forms due</b><span>Employers and businesses</span></div></li>
@@ -250,8 +250,10 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
         </div>
         <label for="m">Message</label>
         <textarea id="m"></textarea>
+        <input id="hp" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
         <button class="btn" type="button" id="send">Send message</button>
         <p id="note" role="status" style="font-size:14px;color:var(--muted);margin:12px 0 0"></p>
+        <p style="font-size:14px;color:var(--muted);margin:8px 0 0">Please don’t include Social Security numbers or other sensitive details in this form.</p>
       </div>
     </div>
   </section>
@@ -265,20 +267,41 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 </footer>
 
 <script>
-document.getElementById('send').addEventListener('click',function(){
-  var g=function(i){return document.getElementById(i).value.trim()};
-  var ref=document.getElementById('refyes').checked&&g('rn')?'\n\nReferred by: '+g('rn'):'';
-  var note=document.getElementById('note');
-  if(!g('n')||!g('e')){note.textContent='Enter your name and email so we can reply.';return}
-  var body='Name: '+g('n')+'\nEmail: '+g('e')+'\nTopic: '+g('w')+'\n\n'+g('m')+ref;
-  location.href='mailto:info@gvcocpa.com?subject='+encodeURIComponent('Consultation request: '+g('w'))+'&body='+encodeURIComponent(body);
-  note.textContent='Opening your email app. If nothing opens, please email info@gvcocpa.com or call (360) 354-2228.';
-});
-['refyes','refno'].forEach(function(id){
-  document.getElementById(id).addEventListener('change',function(){
-    document.getElementById('refbox').hidden=!document.getElementById('refyes').checked;
+(function(){
+  var ENDPOINT='https://formspree.io/f/xkjjeywn';
+  var $=function(i){return document.getElementById(i)};
+  var note=$('note'),btn=$('send');
+  ['refyes','refno'].forEach(function(id){
+    $(id).addEventListener('change',function(){$('refbox').hidden=!$('refyes').checked;});
   });
-});
+  btn.addEventListener('click',function(){
+    var g=function(i){return $(i).value.trim()};
+    if(!g('n')||!g('e')){note.textContent='Enter your name and email so we can reply.';return}
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(g('e'))){note.textContent='Please enter a valid email address.';return}
+    var yes=$('refyes').checked;
+    var data={
+      name:g('n'),email:g('e'),topic:g('w'),
+      referred:yes?'Yes':($('refno').checked?'No':'Not answered'),
+      referral_name:yes?g('rn'):'',
+      message:g('m'),
+      _subject:'Consultation request: '+g('w'),
+      _gotcha:$('hp').value
+    };
+    btn.disabled=true;note.textContent='Sending…';
+    fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)})
+    .then(function(r){
+      if(!r.ok){throw new Error('send failed');}
+      note.textContent='Thank you. We received your message and will be in touch.';
+      ['n','e','m','rn'].forEach(function(i){$(i).value='';});
+      $('refyes').checked=false;$('refno').checked=false;$('refbox').hidden=true;
+      btn.disabled=false;
+    })
+    .catch(function(){
+      note.textContent='Sorry, your message could not be sent. Please email info@gvcocpa.com or call (360) 354-2228.';
+      btn.disabled=false;
+    });
+  });
+})();
 </script>
 </body>
 </html>
