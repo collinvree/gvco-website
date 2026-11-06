@@ -38,6 +38,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .logo{font:600 22px/1 var(--serif);text-decoration:none;letter-spacing:.01em}
 .logo{display:inline-flex;align-items:center;gap:10px}
 .logo .lt{color:var(--ink);font-weight:600}
+h1,h2,h3,.logo,.person b,.dates time{font-optical-sizing:none;font-variation-settings:"opsz" 14}
 .mark{width:38px;height:38px;flex:none;display:block}
 @media (max-width:560px){.mark{width:32px;height:32px}.logo{font-size:17px;gap:8px}}
 .logo span{color:var(--muted);font-weight:400}
@@ -80,6 +81,7 @@ h2.t{font:400 clamp(28px,3.6vw,38px)/1.15 var(--serif);margin:0 0 12px}
 .contact{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px}
 .contact address{font-style:normal;color:var(--muted);line-height:1.9}
 .contact address strong{color:var(--ink)}
+.visit{margin-top:40px;padding-top:28px;border-top:1px solid var(--line)}
 label{display:block;font-weight:600;font-size:14px;margin:0 0 6px}
 input,textarea,select{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--ink);font:16px var(--sans);margin-bottom:16px}
 textarea{min-height:110px;resize:vertical}
@@ -132,9 +134,9 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   <div class="wrap hero">
     <div>
       <h1>Accounting and tax advice you can <em>plan a year around.</em></h1>
-      <p class="lede">We prepare your returns, keep your books clean, and tell you what to do before deadlines arrive. Serving individuals, families, and businesses.</p>
+      <p class="lede">We prepare your returns, keep your books clean, and tell you what to do before deadlines arrive. Serving individuals and business owners.</p>
       <div class="actions">
-        <a class="btn" href="#contact">Book a free 30-minute call</a>
+        <a class="btn" href="#contact">Work with us</a>
         <a class="btn ghost" href="#services">See our services</a>
       </div>
     </div>
@@ -155,12 +157,12 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
       <h2 class="t">What we do</h2>
       <p class="sub">One firm for your taxes, books, and year-round planning. Our goal is to take care of the details while keeping you knowledgeable and involved with your tax and accounting situations.</p>
       <div class="svc">
-        <div><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg><h3>Individual tax</h3><p>Returns, estimated payments, investment and rental income, and multi-state filings.</p></div>
+        <div><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg><h3>Individual tax</h3><p>Tax return preparation, year-round tax planning, estimated payments, and multi-state filings.</p></div>
         <div><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg><h3>Trusts and estates</h3><p>Tax returns for trusts and estates, including fiduciary income tax and estate tax filings.</p></div>
-        <div><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/></svg><h3>Business tax</h3><p>Sole Proprietors, LLCs, Partnerships, S-Corporations, and C-Corporations. Entity selection and year-round tax planning.</p></div>
-        <div><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8"/><path d="M8 12h.01M12 12h.01M16 12h.01M8 16h.01M12 16h.01M16 16h.01"/></svg><h3>Bookkeeping and payroll</h3><p>Monthly reconciliations, financial statements, and payroll filings, done on a set schedule.</p></div>
+        <div><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/></svg><h3>Business tax</h3><p>Tax return preparation, year-round tax planning, and entity selection.</p></div>
+        <div><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8"/><path d="M8 12h.01M12 12h.01M16 12h.01M8 16h.01M12 16h.01M16 16h.01"/></svg><h3>Bookkeeping and payroll</h3><p>Statement entry and reconciliation, management reports, payroll processing and payroll tax filings, and state tax filing, done on a timely set schedule.</p></div>
         <div><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg><h3>Advisory and planning</h3><p>Tax planning strategies and projections, retirement planning, estate planning, and business purchase and sale consulting.</p></div>
-        <div><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><h3>IRS and state notices</h3><p>We read the letter, respond for you, and handle audits and payment plans.</p></div>
+        <div><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><h3>IRS and state notices</h3><p>We can help walk through IRS letters and audits, assisting with the appropriate steps to take.</p></div>
         <div><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V4"/><path d="M5 4h12l-2 4 2 4H5"/></svg><h3>New business setup</h3><p>Forming the entity, setting up your books, and registering with the right agencies.</p></div>
       </div>
     </div>
@@ -187,8 +189,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     <div class="wrap">
       <div class="vals">
         <div><h3>Direct access</h3><p>You work with a licensed CPA who knows your file, not a rotating cast of staff.</p></div>
-        <div><h3>Planning, not just filing</h3><p>We look at your numbers during the year, so tax season holds fewer surprises.</p></div>
-        <div><h3>Plain language</h3><p>We explain what we did and why, without jargon, so you can decide with confidence.</p></div>
+        <div><h3>Planning, not just filing</h3><p>We want to have a holistic approach with our clients throughout the year. Planning ahead and optimizing your tax and financial situation is our goal.</p></div>
+        <div><h3>5-Star Service</h3><p>We communicate clearly and respond in a timely way, so you always know where things stand.</p></div>
       </div>
       <div class="person">
         <div><b>Collin Vree</b><span>CPA</span></div>
@@ -216,15 +218,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
       <div>
         <h2 class="t">Book a consultation</h2>
         <p class="sub">Tell us what you need and we will be in touch.</p>
-        <address>
-          <strong>Groeneweg Vree, CPAs</strong><br>
-          701 Front St.<br>
-          Lynden, WA 98264<br>
-          <a href="tel:+13603542228">(360) 354-2228</a><br>
-          <a href="mailto:info@gvcocpa.com">info@gvcocpa.com</a><br>
-          Monday – Thursday: 8:30 am – 5:00 pm<br>
-          Friday – Sunday: Closed
-        </address>
       </div>
       <div>
         <label for="n">Your name</label>
@@ -254,6 +247,17 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
         <button class="btn" type="button" id="send">Send message</button>
         <p id="note" role="status" style="font-size:14px;color:var(--muted);margin:12px 0 0"></p>
         <p style="font-size:14px;color:var(--muted);margin:8px 0 0">Please don’t include Social Security numbers or other sensitive details in this form.</p>
+        <div class="visit">
+          <address>
+            <strong>Groeneweg Vree, CPAs</strong><br>
+            701 Front St.<br>
+            Lynden, WA 98264<br>
+            <a href="tel:+13603542228">(360) 354-2228</a><br>
+            <a href="mailto:info@gvcocpa.com">info@gvcocpa.com</a><br>
+            Monday – Thursday: 8:30 am – 5:00 pm<br>
+            Friday – Sunday: Closed
+          </address>
+        </div>
       </div>
     </div>
   </section>
