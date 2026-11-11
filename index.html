@@ -243,6 +243,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
         <input id="n" autocomplete="name">
         <label for="e">Email</label>
         <input id="e" type="email" autocomplete="email">
+        <label for="ph">Phone (optional)</label>
+        <input id="ph" type="tel" autocomplete="tel">
         <label for="w">What do you need help with?</label>
         <select id="w">
           <option>Personal tax return</option>
@@ -303,7 +305,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(g('e'))){note.textContent='Please enter a valid email address.';return}
     var yes=$('refyes').checked;
     var data={
-      name:g('n'),email:g('e'),topic:g('w'),
+      name:g('n'),email:g('e'),phone:g('ph'),topic:g('w'),
       referred:yes?'Yes':($('refno').checked?'No':'Not answered'),
       referral_name:yes?g('rn'):'',
       message:g('m'),
@@ -315,7 +317,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     .then(function(r){
       if(!r.ok){throw new Error('send failed');}
       note.textContent='Thank you. We received your message and will be in touch.';
-      ['n','e','m','rn'].forEach(function(i){$(i).value='';});
+      ['n','e','ph','m','rn'].forEach(function(i){$(i).value='';});
       $('refyes').checked=false;$('refno').checked=false;$('refbox').hidden=true;
       btn.disabled=false;
     })
